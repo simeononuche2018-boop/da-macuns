@@ -1,0 +1,11 @@
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Vercel local link info
+.vercel
+
+# Editor folders
+.vscode/
+.idea/
