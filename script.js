@@ -1,15 +1,15 @@
-/* DA MaCUNS: shared behaviour for index.html and menu.html (vanilla JS, no dependencies) */
+/* DA MacUNS: shared behaviour for index.html and menu.html (vanilla JS, no dependencies) */
 (function () {
   'use strict';
 
   /* ---------- Product catalogue (single source of truth for the cart) ---------- */
   var PRODUCTS = {
     'party-jollof':   { name: 'Party Jollof Combo',     price: 4000, img: 'images/party-jollof.jpg',      rating: '5.0 (912 Reviews)', cats: ['combos', 'rice'] },
-    'smoothie':       { name: 'DA MaCUNS Smoothie',     price: 1500, img: 'images/smoothie.jpg',          rating: '5.0 (902 Reviews)', cats: ['smoothies'] },
+    'smoothie':       { name: 'DA MacUNS Smoothie',     price: 1500, img: 'images/smoothie.jpg',          rating: '5.0 (902 Reviews)', cats: ['smoothies'] },
     'poundo-egusi':   { name: 'Poundo & Egusi Combo',   price: 4200, img: 'images/poundo-egusi.jpg',      rating: '4.9 (612 Reviews)', cats: ['combos', 'swallow'] },
     'veg-jollof':     { name: 'Vegetable Jollof Combo', price: 4000, img: 'images/vegetable-jollof-orange-juice.jpg',  rating: '5.0 (832 Reviews)', cats: ['combos', 'rice'] },
     'orange-smoothie':{ name: 'DA Orange Smoothie',     price: 1500, img: 'images/orange-smoothie-placeholder.jpg', rating: '4.6 (580 Reviews)', cats: ['smoothies'] },
-    'smoothie-3000':  { name: 'DA MaCUNS Smoothie',     price: 3000, img: 'images/smoothie.jpg',          rating: '5.0 (901 Reviews)', cats: ['smoothies'] }
+    'smoothie-3000':  { name: 'DA MacUNS Smoothie',     price: 3000, img: 'images/smoothie.jpg',          rating: '5.0 (901 Reviews)', cats: ['smoothies'] }
   };
   var ZONES = { '1': { name: 'Uni Abuja Main Gate', mins: 20 }, '2': { name: 'Gwagwalada Central', mins: 30 }, '3': { name: 'Phase 3, Gwagwalada', mins: 25 } };
 
