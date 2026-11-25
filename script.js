@@ -245,16 +245,25 @@
   /* ---------- Reveal on scroll + counters ---------- */
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (typeof window.IntersectionObserver === 'function' && !reduce) {
+    var revealed = [];
+    var showEl = function (el) {
+      if (revealed.indexOf(el) !== -1) return;
+      revealed.push(el);
+      el.classList.add('in');
+      $$('[data-count]', el).forEach(runCounter);
+      if (el.hasAttribute('data-count')) runCounter(el);
+      io.unobserve(el);
+    };
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        en.target.classList.add('in');
-        $$('[data-count]', en.target).forEach(runCounter);
-        if (en.target.hasAttribute('data-count')) runCounter(en.target);
-        io.unobserve(en.target);
-      });
-    }, { threshold: 0.2 });
-    $$('.reveal, [data-count-wrap]').forEach(function (el) { io.observe(el); });
+      entries.forEach(function (en) { if (en.isIntersecting) showEl(en.target); });
+    }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+    var targets = $$('.reveal, [data-count-wrap]');
+    targets.forEach(function (el) { io.observe(el); });
+    /* Safety net: also reveal anything that is inside the window height (covers resize, full-page screenshots, print) */
+    var sweep = function () { targets.forEach(function (el) { if (el.getBoundingClientRect().top < window.innerHeight) showEl(el); }); };
+    window.addEventListener('resize', sweep);
+    window.addEventListener('load', sweep);
+    window.addEventListener('beforeprint', function () { targets.forEach(showEl); });
   } else {
     $$('.reveal').forEach(function (el) { el.classList.add('in'); });
     $$('[data-count]').forEach(function (el) { el.textContent = el.dataset.count + (el.dataset.suffix || ''); });
